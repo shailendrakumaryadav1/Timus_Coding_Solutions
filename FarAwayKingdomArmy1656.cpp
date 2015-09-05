@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<algorithm>
+int main()
+{
+    int n,k,i,j;
+    int a[100]={},arr[10][10];
+    scanf("%d",&n);
+    k=n*n;
+    for(i=0;i<k;i++)
+        scanf("%d",&a[i]);
+    std::sort(a,a+k);
+    arr[n/2][n/2]=a[--k];
+    for(i=n/2-1;i>=0;i--)
+    {
+        arr[i][n/2]=a[--k];
+        arr[n-i-1][n/2]=a[--k];
+    }
+    for(i=n/2-1;i>=0;i--)
+    {
+        arr[n/2][i]=a[--k];
+        arr[n/2][n-i-1]=a[--k];
+    }
+    for(j=n/2-1;j>=0;j--)
+    {
+        for(i=n/2-1;i>=0;i--)
+    {
+        arr[i][j]=a[--k];
+        arr[n-i-1][j]=a[--k];
+    }
+        for(i=n/2-1;i>=0;i--)
+    {
+        arr[i][n-1-j]=a[--k];
+        arr[n-i-1][n-1-j]=a[--k];
+    }
+    }
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+            printf("%d\t",arr[i][j]);
+        printf("\n");
+    }
+}
